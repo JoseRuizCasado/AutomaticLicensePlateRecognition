@@ -159,14 +159,14 @@ class ANPR:
         # return the built options string
         return options
 
-    def find_and_ocr(self, image, psm=7, clearBorder=False):
+    def find_and_ocr(self, image, psm=7, clear_border=False):
         """
         Brings all the components together in one centralized place so our driver script can instantiate a
         ANPR object, and then make a single function call.
 
         :param image: The three-channel color image of the rear (or front) of a car with a license plate tag.
         :param psm: The Tesseract Page Segmentation Mode.
-        :param clearBorder: The flag indicating whether we’d like to clean up contours touching the border of the
+        :param clear_border: The flag indicating whether we’d like to clean up contours touching the border of the
         license plate ROI
         :return: 2-tuple of the OCR'd license plate text along with the contour associated with the license plate region
         """
@@ -177,7 +177,7 @@ class ANPR:
         # candidates, leaving us with the *actual* license plate
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         candidates = self.locate_license_plate_candidates(gray)
-        lp, lp_cnt = self.locate_license_plate(gray, candidates, clearBorder=clearBorder)
+        lp, lp_cnt = self.locate_license_plate(gray, candidates, clearBorder=clear_border)
         # only OCR the license plate if the license plate ROI is not
         # empty
         if lp is not None:
