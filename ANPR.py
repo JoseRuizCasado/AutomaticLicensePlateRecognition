@@ -44,7 +44,6 @@ def find_plate(img):
     Cropped = gray[topx:bottomx + 1, topy:bottomy + 1]
 
     text = pytesseract.image_to_string(Cropped, config='--psm 11')
-    print("programming_fever's License Plate Recognition\n")
     print("Detected license plate Number is:", text)
     img = cv2.resize(img, (500, 300))
     Cropped = cv2.resize(Cropped, (400, 200))
@@ -53,3 +52,4 @@ def find_plate(img):
 
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+    return text
